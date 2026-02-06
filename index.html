@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nora de Fitero Teijeira</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background: linear-gradient(180deg, #FF6B9D 0%, #FFA5C8 50%, #FFD4E5 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
+        }
+
+        /* Pixel art city background */
+        .city {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to bottom, transparent 0%, #C94277 100%);
+            z-index: 1;
+        }
+
+        .building {
+            position: absolute;
+            bottom: 0;
+            background: #8B2D5C;
+            box-shadow: 
+                inset 0 0 0 2px #6B1E45,
+                0 0 0 2px #000;
+        }
+
+        .building::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 15px, #FF6B9D 15px, #FF6B9D 17px),
+                repeating-linear-gradient(90deg, transparent, transparent 15px, #FF6B9D 15px, #FF6B9D 17px);
+        }
+
+        .building:nth-child(1) { width: 80px; height: 120px; left: 5%; }
+        .building:nth-child(2) { width: 100px; height: 160px; left: 15%; }
+        .building:nth-child(3) { width: 70px; height: 100px; left: 28%; }
+        .building:nth-child(4) { width: 90px; height: 140px; left: 40%; }
+        .building:nth-child(5) { width: 85px; height: 110px; left: 55%; }
+        .building:nth-child(6) { width: 95px; height: 150px; left: 68%; }
+        .building:nth-child(7) { width: 75px; height: 130px; left: 82%; }
+
+        /* Pixel stars */
+        .star {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #FFF;
+            box-shadow: 0 0 0 2px #FFD700;
+            animation: twinkle 2s infinite;
+        }
+
+        .star:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .star:nth-child(2) { top: 20%; left: 80%; animation-delay: 0.5s; }
+        .star:nth-child(3) { top: 15%; left: 50%; animation-delay: 1s; }
+        .star:nth-child(4) { top: 25%; left: 30%; animation-delay: 1.5s; }
+        .star:nth-child(5) { top: 8%; left: 70%; animation-delay: 0.3s; }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        /* Nyan Cat style kitten */
+        .nyan-cat {
+            position: absolute;
+            top: 30%;
+            left: -200px;
+            animation: fly 15s linear infinite;
+            z-index: 5;
+        }
+
+        @keyframes fly {
+            0% { left: -200px; }
+            100% { left: 120%; }
+        }
+
+        .rainbow {
+            position: absolute;
+            top: 50%;
+            right: 100%;
+            width: 300px;
+            height: 40px;
+            transform: translateY(-50%);
+        }
+
+        .rainbow-stripe {
+            height: 6px;
+            width: 100%;
+        }
+
+        .rainbow-stripe:nth-child(1) { background: #FF6B9D; }
+        .rainbow-stripe:nth-child(2) { background: #FFA5C8; }
+        .rainbow-stripe:nth-child(3) { background: #FFD4E5; }
+        .rainbow-stripe:nth-child(4) { background: #E8B4D9; }
+        .rainbow-stripe:nth-child(5) { background: #D494C7; }
+        .rainbow-stripe:nth-child(6) { background: #C074B5; }
+
+        .cat {
+            position: relative;
+            width: 80px;
+            height: 60px;
+            z-index: 2;
+        }
+
+        /* Pixel cat body */
+        .cat-body {
+            position: absolute;
+            width: 48px;
+            height: 32px;
+            background: #FFB5D5;
+            bottom: 8px;
+            left: 16px;
+            box-shadow: 
+                0 0 0 2px #000,
+                inset 0 -8px 0 #FF9BC4;
+        }
+
+        .cat-head {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            background: #FFB5D5;
+            top: 0;
+            left: 0;
+            box-shadow: 0 0 0 2px #000;
+        }
+
+        .cat-ear {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #FFB5D5;
+            box-shadow: 0 0 0 2px #000;
+        }
+
+        .cat-ear.left { top: -4px; left: 4px; }
+        .cat-ear.right { top: -4px; right: 4px; }
+
+        .cat-eye {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #000;
+            top: 12px;
+        }
+
+        .cat-eye.left { left: 6px; }
+        .cat-eye.right { right: 6px; }
+
+        .cat-tail {
+            position: absolute;
+            width: 24px;
+            height: 8px;
+            background: #FFB5D5;
+            bottom: 16px;
+            right: -16px;
+            box-shadow: 0 0 0 2px #000;
+            animation: tail-wag 0.5s infinite;
+        }
+
+        @keyframes tail-wag {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-10deg); }
+        }
+
+        .cat-legs {
+            position: absolute;
+            bottom: 0;
+            left: 16px;
+        }
+
+        .cat-leg {
+            display: inline-block;
+            width: 8px;
+            height: 12px;
+            background: #FFB5D5;
+            margin: 0 8px;
+            box-shadow: 0 0 0 2px #000;
+        }
+
+        /* Container */
+        .container {
+            background: #FFF;
+            border: 4px solid #000;
+            box-shadow: 
+                8px 8px 0 #FF6B9D,
+                8px 8px 0 4px #000;
+            padding: 40px 30px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .logo {
+            font-size: 32px;
+            color: #FF6B9D;
+            text-shadow: 
+                3px 3px 0 #000,
+                6px 6px 0 #FFA5C8;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            color: #8B2D5C;
+            font-size: 10px;
+            margin-bottom: 30px;
+        }
+
+        .pixel-heart {
+            width: 40px;
+            height: 40px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .pixel-heart::before,
+        .pixel-heart::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #FF6B9D;
+            box-shadow: 0 0 0 2px #000;
+        }
+
+        .pixel-heart::before {
+            transform: rotate(45deg);
+        }
+
+        .pixel-heart::after {
+            transform: rotate(-45deg);
+        }
+
+        .message {
+            color: #8B2D5C;
+            font-size: 12px;
+            margin: 30px 0;
+            line-height: 1.8;
+        }
+
+        .github-link {
+            display: inline-block;
+            background: #FF6B9D;
+            color: #FFF;
+            text-decoration: none;
+            padding: 15px 25px;
+            font-size: 10px;
+            border: 4px solid #000;
+            box-shadow: 4px 4px 0 #8B2D5C;
+            margin-top: 20px;
+            transition: all 0.1s;
+            position: relative;
+        }
+
+        .github-link:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 #8B2D5C;
+        }
+
+        .github-link:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0 0 0 #8B2D5C;
+        }
+
+        /* Pixel clouds */
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6);
+            animation: cloud-move 30s linear infinite;
+        }
+
+        .cloud:nth-child(1) {
+            width: 60px;
+            height: 20px;
+            top: 15%;
+            left: -100px;
+        }
+
+        .cloud:nth-child(2) {
+            width: 80px;
+            height: 25px;
+            top: 25%;
+            left: -150px;
+            animation-delay: 10s;
+        }
+
+        @keyframes cloud-move {
+            0% { left: -100px; }
+            100% { left: 120%; }
+        }
+
+        @media (max-width: 600px) {
+            .logo {
+                font-size: 24px;
+            }
+
+            .subtitle {
+                font-size: 8px;
+            }
+
+            .message {
+                font-size: 10px;
+            }
+
+            .github-link {
+                font-size: 8px;
+                padding: 12px 20px;
+            }
+
+            .building {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+
+    <div class="city">
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+    </div>
+
+    <div class="nyan-cat">
+        <div class="rainbow">
+            <div class="rainbow-stripe"></div>
+            <div class="rainbow-stripe"></div>
+            <div class="rainbow-stripe"></div>
+            <div class="rainbow-stripe"></div>
+            <div class="rainbow-stripe"></div>
+            <div class="rainbow-stripe"></div>
+        </div>
+        <div class="cat">
+            <div class="cat-head">
+                <div class="cat-ear left"></div>
+                <div class="cat-ear right"></div>
+                <div class="cat-eye left"></div>
+                <div class="cat-eye right"></div>
+            </div>
+            <div class="cat-body"></div>
+            <div class="cat-tail"></div>
+            <div class="cat-legs">
+                <div class="cat-leg"></div>
+                <div class="cat-leg"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="logo">NORA</div>
+        <div class="subtitle">de Fitero Teijeira</div>
+        
+        <div class="pixel-heart"></div>
+        
+        <div class="message">
+            SOMETHING AMAZING<br>
+            IS ON ITS WAY....
+        </div>
+        
+        <a href="https://github.com/dde-fite" target="_blank" class="github-link">
+            > VISIT MY PROJECTS
+        </a>
+    </div>
+</body>
+</html>
