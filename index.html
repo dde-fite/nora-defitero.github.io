@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nora de Fitero Teijeira</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        @import url('https://fonts.bunny.net/css2?family=Press+Start+2P&display=swap');
 
         * {
             margin: 0;
@@ -33,7 +33,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            height: 200px;
+            height: 350px;
             background: linear-gradient(to bottom, transparent 0%, #C94277 100%);
             z-index: 1;
         }
@@ -43,8 +43,8 @@
             bottom: 0;
             background: #8B2D5C;
             box-shadow: 
-                inset 0 0 0 2px #6B1E45,
-                0 0 0 2px #000;
+                inset 0 0 0 3px #6B1E45,
+                0 0 0 3px #000;
         }
 
         .building::before {
@@ -55,17 +55,68 @@
             right: 0;
             bottom: 0;
             background-image: 
-                repeating-linear-gradient(0deg, transparent, transparent 15px, #FF6B9D 15px, #FF6B9D 17px),
-                repeating-linear-gradient(90deg, transparent, transparent 15px, #FF6B9D 15px, #FF6B9D 17px);
+                repeating-linear-gradient(0deg, transparent, transparent 12px, #FF6B9D 12px, #FF6B9D 14px),
+                repeating-linear-gradient(90deg, transparent, transparent 12px, #FF6B9D 12px, #FF6B9D 14px);
         }
 
-        .building:nth-child(1) { width: 80px; height: 120px; left: 5%; }
-        .building:nth-child(2) { width: 100px; height: 160px; left: 15%; }
-        .building:nth-child(3) { width: 70px; height: 100px; left: 28%; }
-        .building:nth-child(4) { width: 90px; height: 140px; left: 40%; }
-        .building:nth-child(5) { width: 85px; height: 110px; left: 55%; }
-        .building:nth-child(6) { width: 95px; height: 150px; left: 68%; }
-        .building:nth-child(7) { width: 75px; height: 130px; left: 82%; }
+        .building::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40%;
+            height: 20px;
+            background: #6B1E45;
+            box-shadow: 0 0 0 2px #000;
+        }
+
+        .building:nth-child(1) { width: 90px; height: 180px; left: 2%; }
+        .building:nth-child(2) { width: 120px; height: 250px; left: 12%; }
+        .building:nth-child(3) { width: 85px; height: 150px; left: 24%; }
+        .building:nth-child(4) { width: 110px; height: 220px; left: 35%; }
+        .building:nth-child(5) { width: 95px; height: 170px; left: 48%; }
+        .building:nth-child(6) { width: 115px; height: 240px; left: 60%; }
+        .building:nth-child(7) { width: 90px; height: 200px; left: 73%; }
+        .building:nth-child(8) { width: 100px; height: 160px; left: 85%; }
+        .building:nth-child(9) { width: 80px; height: 190px; left: 93%; }
+
+        /* Antenas on buildings */
+        .antenna {
+            position: absolute;
+            width: 4px;
+            height: 40px;
+            background: #FF6B9D;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 2px #000;
+        }
+
+        .antenna::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: #FFD700;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px #000;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .building:nth-child(2) .antenna,
+        .building:nth-child(4) .antenna,
+        .building:nth-child(6) .antenna {
+            display: block;
+        }
 
         /* Pixel stars */
         .star {
@@ -243,31 +294,6 @@
             margin-bottom: 30px;
         }
 
-        .pixel-heart {
-            width: 40px;
-            height: 40px;
-            margin: 20px auto;
-            position: relative;
-        }
-
-        .pixel-heart::before,
-        .pixel-heart::after {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background: #FF6B9D;
-            box-shadow: 0 0 0 2px #000;
-        }
-
-        .pixel-heart::before {
-            transform: rotate(45deg);
-        }
-
-        .pixel-heart::after {
-            transform: rotate(-45deg);
-        }
-
         .message {
             color: #8B2D5C;
             font-size: 12px;
@@ -362,13 +388,33 @@
     <div class="cloud"></div>
 
     <div class="city">
-        <div class="building"></div>
-        <div class="building"></div>
-        <div class="building"></div>
-        <div class="building"></div>
-        <div class="building"></div>
-        <div class="building"></div>
-        <div class="building"></div>
+        <div class="building">
+            <div class="antenna"></div>
+        </div>
+        <div class="building">
+            <div class="antenna"></div>
+        </div>
+        <div class="building">
+            <div class="antenna"></div>
+        </div>
+        <div class="building">
+            <div class="antenna"></div>
+        </div>
+        <div class="building">
+            <div class="antenna"></div>
+        </div>
+        <div class="building">
+            <div class="antenna"></div>
+        </div>
+        <div class="building">
+            <div class="antenna"></div>
+        </div>
+        <div class="building">
+            <div class="antenna"></div>
+        </div>
+        <div class="building">
+            <div class="antenna"></div>
+        </div>
     </div>
 
     <div class="nyan-cat">
@@ -399,8 +445,6 @@
     <div class="container">
         <div class="logo">NORA</div>
         <div class="subtitle">de Fitero Teijeira</div>
-        
-        <div class="pixel-heart"></div>
         
         <div class="message">
             SOMETHING AMAZING<br>
