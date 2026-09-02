@@ -1,0 +1,30 @@
+@import url(https://fonts.bunny.net/css?family=matangi:200,300,400);
+@import url(https://fonts.bunny.net/css?family=raleway:300);
+
+@import "tailwindcss";
+
+@theme {
+	--color-primary: #E2E3F3;
+	--color-black: #1F1F22;
+	--font-display: "Matangi", sans-serif;
+	--font-text: "Raleway", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {color: #E2E3F3; font-family: 'Matangi', sans-serif;}
+
+h1 {
+	font-weight: 400;
+}
+
+h2, h3 {
+	font-weight: 200;
+}
+
+p {
+	color: #FFFFFF;
+	font-family: 'Raleway', sans-serif;
+}
+
+body {
+	background-color: #1F1F22;
+}
