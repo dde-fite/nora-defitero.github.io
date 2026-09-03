@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { T } from '@threlte/core'
 	import { Float, useGltf } from '@threlte/extras'
-	import { scrollTop } from '../shared.svelte'
+	import { scroll } from '../shared.svelte'
 
 	const station = useGltf('/models/station.glb')
 
@@ -38,9 +38,9 @@
 	let rotY = $state(stage1RotY)
 	let rotZ = $state(stage1RotZ)
 	$effect(() => {
-		const scroll = scrollTop.scroll
+		const scrollTop = scroll.scrollTop
 
-		if (scroll <= stage1Threshold) {
+		if (scrollTop <= stage1Threshold) {
 			posX = stage1X
 			posY = stage1Y
 			posZ = stage1Z
@@ -48,10 +48,10 @@
 			rotY = stage1RotY
 			rotZ = stage1RotZ
 		}
-		else if (scroll > stage1Threshold && scroll < stage3Threshold)
+		else if (scrollTop > stage1Threshold && scrollTop < stage3Threshold)
 		{
 			const t =
-				(scroll - stage1Threshold) /
+				(scrollTop - stage1Threshold) /
 				(stage3Threshold - stage1Threshold)
 			const smooth = t * t * (3 - 2 * t)
 			posX = stage2X + (stage3X - stage2X) * smooth
@@ -61,7 +61,7 @@
 			rotY = stage2RotY + (stage3RotY - stage2RotY) * smooth
 			rotZ = stage2RotZ + (stage3RotZ - stage2RotZ) * smooth
 		}
-		else if (scroll >= stage3Threshold) {
+		else if (scrollTop >= stage3Threshold) {
 			posX = stage3X
 			posY = stage3Y
 			posZ = stage3Z

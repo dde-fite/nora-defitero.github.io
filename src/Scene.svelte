@@ -8,7 +8,7 @@
 
     import Station from './lib/Station.svelte'
 	import Earth from './lib/Earth.svelte'
-	import { scrollTop } from './shared.svelte'
+	import { scroll } from './shared.svelte'
     import Nebula from './lib/Nebula.svelte'
     import Exoplanet from './lib/Exoplanet.svelte'
 
@@ -32,24 +32,17 @@
 	let stage2Angle = 0.5235988 // 30°
 
 	let cameraRotY = $derived.by(() => {
-		const scroll = scrollTop.scroll
-
-		if (scroll <= stage1Threshold) {
+		const scrollTop = scroll.scrollTop
+		if (scrollTop <= stage1Threshold) {
 			return stage1Angle
 		}
-
-		if (scroll >= stage2Threshold) {
+		if (scrollTop >= stage2Threshold) {
 			return stage2Angle
 		}
-
-		// Progreso entre Stage 1 y Stage 2
 		const t =
-			(scroll - stage1Threshold) /
+			(scrollTop - stage1Threshold) /
 			(stage2Threshold - stage1Threshold)
-
-		// Smooth transition
 		const smooth = t * t * (3 - 2 * t)
-
 		return stage1Angle + (stage2Angle - stage1Angle) * smooth
 	})
 </script>
@@ -64,7 +57,7 @@
 />
 <Station />
 <T.DirectionalLight
-	position={[ 176.3, 186.1, 123.1 ]}
+	position={[ 176.3, 183.1, 126.1 ]}
 	intensity={2.2}
 	color="#fff5e6"
 	castShadow={false}

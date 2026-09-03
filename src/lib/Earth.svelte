@@ -2,7 +2,7 @@
 	import { T } from '@threlte/core'
 	import { Float, useGltf } from '@threlte/extras'
 	import { onMount } from 'svelte'
-	import { scrollTop } from '../shared.svelte'
+	import { scroll } from '../shared.svelte'
 
 	const earth = useGltf('/models/earth.glb')
 
@@ -26,10 +26,10 @@
 	})
 
 	let rotX = $derived(
-		initialRotX - scrollTop.scroll * 0.0004
+		initialRotX - scroll.scrollTop * 0.0004
 	)
 	let rotY = $derived(
-		initialRotY + scrollTop.scroll * 0.001
+		initialRotY + scroll.scrollTop * 0.001
 	)
 </script>
 

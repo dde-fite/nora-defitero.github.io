@@ -2,7 +2,6 @@
 	import { T } from '@threlte/core'
 	import { Float, useGltf } from '@threlte/extras'
 	import { onMount } from 'svelte'
-	import { scrollTop } from '../shared.svelte'
 
 	const earth = useGltf('/models/exoplanet.glb')
 
