@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { flip } from 'svelte/animate'
-	import ButtonArrow from '../assets/ButtonArrow.svelte'
+	import ButtonArrow from '../assets/button_arrow.svelte'
 
 	let { children } = $props()
 
