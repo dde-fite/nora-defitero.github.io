@@ -461,13 +461,13 @@
     </svg>
   {/if}
   <div class="glass-inner">
-    <span class="button-text">
+    <div class="flex gap-4 items-center justify-center text-xl text-primary font-display font-light">
       {#if children}
         {@render children()}
       {:else}
         Button
       {/if}
-    </span>
+    </div>
   </div>
 </div>
 
@@ -501,11 +501,6 @@
     justify-content: center;
     align-items: center;
     background-color: var(--glass-tint, transparent);
-  }
-  .button-text {
-    color: var(--btn-color, white);
-    font-size: var(--button-font-size, 1.8rem);
-    text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
   }
   .use-backdrop-filter .glass-inner {
     backdrop-filter: var(--liquid-backdrop-filter);

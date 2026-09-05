@@ -9,8 +9,6 @@ export type GlassShapeType = 'squircle' | 'pill' | 'circle';
 export interface GlassDimensionProps {
   type?: GlassShapeType;
   radius?: number;
-  radiusPercent?: number;
-  'radius-percent'?: number;
 }
 
 export interface GlassSurfaceProps {
@@ -67,8 +65,6 @@ export type ButtonComponentProps = GlassComponentProps & GlassButtonOnlyProps;
 export const GLASS_PROP_KEYS: readonly string[] = [
   'type',
   'radius',
-  'radiusPercent',
-  'radius-percent',
   // LiquidButton-only props — GlassFilter ignores them but they still need to
   // be filtered out of forwarded DOM attributes.
   'width',
@@ -161,7 +157,6 @@ export function normalizeGlassProps(value: object): GlassSettings {
   return {
     type: (raw.type ?? 'squircle') as GlassShapeType,
     radius: asNumber(raw.radius),
-    radiusPercent: asNumber(raw.radiusPercent ?? raw['radius-percent']),
     surfaceType: (raw.surfaceType ??
       raw['surface-type'] ??
       'convex_squircle') as SurfaceType,

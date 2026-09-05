@@ -52,6 +52,26 @@
       : { width: 0, height: 0 },
   );
 
+  // GlassFilter always fills its parent, so the dimensions that feed the
+  // filter pipeline come from the actual rendered element. A ResizeObserver
+  // keeps `measured` in sync whenever the element or its parent resizes.
+  let element = $state<HTMLDivElement | undefined>();
+  let measured = $state({ width: 0, height: 0 });
+
+  $effect(() => {
+    const el = element;
+    if (!el || typeof ResizeObserver === 'undefined') return;
+    const update = () => {
+      const rect = el.getBoundingClientRect();
+      measured.width = Math.round(rect.width);
+      measured.height = Math.round(rect.height);
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  });
+
   // Track the viewport while in responsive mode; the resize listener is
   // debounced so we don't rebuild the (expensive) displacement maps every tick.
   $effect(() => {
@@ -65,15 +85,22 @@
     return () => window.removeEventListener('resize', onResize);
   });
 
-  // Fixed mode reads px values (with per-type defaults); responsive mode
-  // derives dimensions from the viewport via vw/vh percentages.
-  const dims = $derived(
-    resolveDimensions({
+  // Derive geometry from the measured size when available. Before the first
+  // measurement we report zero dimensions so the filter build short-circuits
+  // (no map is generated for a 0×0 canvas) and the border-radius stays at 0
+  // until the real size is known.
+  const dims = $derived.by(() => {
+    if (measured.width < 1 || measured.height < 1) {
+      return { width: 0, height: 0, radius: 0 };
+    }
+    return resolveDimensions({
       ...glass,
+      width: measured.width,
+      height: measured.height,
       viewportWidth: viewport.width,
       viewportHeight: viewport.height,
-    }),
-  );
+    });
+  });
 
   const bezel = $derived(
     resolveBezelWidth({
@@ -128,10 +155,11 @@
 </script>
 
 <div
+  bind:this={element}
   class={rootClass}
   {style}
-  style:width={glass.fill ? '100%' : `${dims.width}px`}
-  style:height={glass.fill ? '100%' : `${dims.height}px`}
+  style:width="100%"
+  style:height="100%"
   style:border-radius={`${dims.radius}px`}
   style:font-size={fontSizeValue ? `${fontSizeValue}px` : undefined}
   style:--glass-tint={glass.tint}
