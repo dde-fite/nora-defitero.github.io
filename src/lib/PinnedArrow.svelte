@@ -28,16 +28,26 @@
 			}
 		});
 
+
 		tl.to(arrowElement, {
-			y: "-20svh",
-			duration: 2,
-			ease: "none"
+			keyframes: [
+				{
+					y: "0svh",
+					duration: 2,
+					ease: "power2.out"
+				},
+				{
+					y: "-20svh",
+					duration: 4,
+					ease: "power2.inOut"
+				}
+			]
 		})
 		.to(arrowElement, {
 			rotation: 180,
-			duration: 2,
+			duration: 2.5,
 			ease: "power2.inOut"
-		})
+		});
 	});
 
 	const handleClick = () => {
