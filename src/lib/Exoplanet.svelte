@@ -1,11 +1,14 @@
 <script lang="ts">
 	import { T } from '@threlte/core'
-	import { Float, useGltf } from '@threlte/extras'
+	import { useGltf, useMeshopt } from '@threlte/extras'
 	import { onMount } from 'svelte'
 
-	const earth = useGltf('/models/exoplanet.glb')
+	const meshoptDecoder = useMeshopt()
+	const earth = useGltf('/models/exoplanet.glb', {
+		meshoptDecoder
+	})
 
-	const planetTimeRot = 0.00001
+	const planetTimeRot = 0.00003
 
 	let time = $state(0)
 
@@ -25,13 +28,14 @@
 
 {#if $earth}
 	<T.Group
-		position={[ -92.2, -0.9, -109.9 ]}
-		rotation={[ -0.7191, -0.5239, 0.5789 ]}
+		position={[ -143.3, 0, -188.9 ]}
+		rotation={[ -0, -0.32, -0.6 ]}
 		scale={[ 25, 25, 25 ]}
 	>
 		<T
-			is={$earth.nodes["Sketchfab_model"]}
-			rotation={[0, 0, time * planetTimeRot]}
+			is={$earth.scene}
+			rotation={[0, time * planetTimeRot, 0]}
+			position={[ 0, 0, 0 ]}
 		/>
 	</T.Group>
 {/if}

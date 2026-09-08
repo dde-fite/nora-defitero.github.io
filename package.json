@@ -1,31 +1,54 @@
 {
-  "name": "nora.defitero.com",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json"
-  },
-  "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "^7.3.0",
-    "@tsconfig/svelte": "^5.0.8",
-    "@types/node": "^24.13.3",
-    "@types/three": "^0.185.4",
-    "svelte": "^5.56.10",
-    "svelte-check": "^4.7.6",
-    "typescript": "~6.0.2",
-    "vite": "^8.2.2"
-  },
-  "dependencies": {
-    "@tailwindcss/vite": "^4.3.3",
-    "@threlte/core": "^8.6.0",
-    "@threlte/extras": "^9.21.1",
-    "@threlte/studio": "^0.4.3",
-    "gsap": "^3.15.0",
-    "tailwindcss": "^4.3.3",
-    "three": "^0.185.1"
-  }
+	"name": "nora.defitero.com",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "npm run transform-models && npm run watch-models & vite dev",
+		"build": "npm run transform-models && wrangler types --check && vite build",
+		"preview": "wrangler pages dev .svelte-kit/cloudflare --port 4173",
+		"prepare": "svelte-kit sync || echo ''",
+		"check": "wrangler types --check && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write .",
+		"gen": "wrangler types",
+		"transform-models": "node scripts/transform-models.mjs",
+		"watch-models": "chokidar \"src/lib/assets/models/**/*.glb\" -c \"npm run transform-models\""
+	},
+	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"@gltf-transform/cli": "^4.5.0",
+		"@inlang/paraglide-js": "^2.18.2",
+		"@sveltejs/adapter-cloudflare": "^7.2.8",
+		"@sveltejs/enhanced-img": "^0.11.0",
+		"@sveltejs/kit": "^2.63.0",
+		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@tailwindcss/vite": "^4.3.0",
+		"@theatre/studio": "^0.7.2",
+		"@types/node": "^24",
+		"@types/three": "^0.185.4",
+		"chokidar-cli": "^3.0.0",
+		"eslint": "^10.4.1",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-svelte": "^3.19.0",
+		"globals": "^17.6.0",
+		"prettier": "^3.8.3",
+		"prettier-plugin-svelte": "^4.1.0",
+		"prettier-plugin-tailwindcss": "^0.8.0",
+		"svelte": "^5.56.1",
+		"svelte-check": "^4.6.0",
+		"tailwindcss": "^4.3.0",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.60.1",
+		"vite": "^8.0.16",
+		"wrangler": "^4.97.0"
+	},
+	"dependencies": {
+		"@threlte/core": "^8.6.0",
+		"@threlte/extras": "^9.21.1",
+		"@threlte/theatre": "^3.2.2",
+		"gsap": "^3.15.0",
+		"three": "^0.185.1"
+	}
 }

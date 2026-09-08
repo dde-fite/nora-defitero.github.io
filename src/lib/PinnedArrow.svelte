@@ -3,18 +3,17 @@
 	import { gsap } from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-	import LargeArrow from "../assets/large_arrow.svelte";
-	import { scroll } from "../shared.svelte";
-    import { HTML } from "@threlte/extras"
+	import LargeArrow from "$assets/large_arrow.svelte";
+	import { scroll } from "$lib/shared.svelte";
 
 	interface Props {
 		to: HTMLElement;
 		tm_trigger: HTMLElement;
 	}
 
-	const { to, tm_trigger }: Props = $props();
+	const { to, tm_trigger }: Props = $props()
 
-	let arrowElement: HTMLButtonElement;
+	let arrowElement: HTMLButtonElement
 
 	onMount(() => {
 		gsap.registerPlugin(ScrollTrigger);
@@ -26,7 +25,7 @@
 				end: "+=100%",
 				scrub: 1
 			}
-		});
+		})
 
 
 		tl.to(arrowElement, {
@@ -47,8 +46,8 @@
 			rotation: 180,
 			duration: 2.5,
 			ease: "power2.inOut"
-		});
-	});
+		})
+	})
 
 	const handleClick = () => {
 		if (scroll.smoother) {

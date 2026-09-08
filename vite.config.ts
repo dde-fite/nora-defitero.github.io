@@ -1,9 +1,31 @@
-import { svelte } from '@sveltejs/vite-plugin-svelte'
-import tailwindcss from '@tailwindcss/vite'
-import { threlteStudio } from '@threlte/studio/vite'
-import { defineConfig } from 'vite'
+import { resolve } from "path";
+import { paraglideVitePlugin } from '@inlang/paraglide-js';
+import tailwindcss from '@tailwindcss/vite';
+import adapter from '@sveltejs/adapter-cloudflare';
+import { sveltekit } from '@sveltejs/kit/vite';
+import { enhancedImages } from '@sveltejs/enhanced-img';
+import { defineConfig } from 'vite';
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [svelte(), tailwindcss(), threlteStudio()],
-})
+	plugins: [
+		tailwindcss(),
+		sveltekit({
+			compilerOptions: {
+				runes: ({ filename }) =>
+					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
+			},
+			adapter: adapter(),
+			alias: {
+				'$components': resolve('./src/lib/components'),
+				'$assets': resolve('./src/lib/assets')
+			}
+		}),
+
+		paraglideVitePlugin({
+			project: './project.inlang',
+			outdir: './src/lib/paraglide',
+			emitTsDeclarations: true
+		}),
+		enhancedImages()
+	]
+});
