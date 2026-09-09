@@ -13,7 +13,7 @@
     import Button from '$components/Button.svelte'
 	import Scene from '$lib/Scene.svelte'
 	import stateJson from '$lib/sequence.json'
-    import ProjectsList from '$lib/ProjectsList.svelte'
+    import Projects from '$lib/Projects.svelte'
 
 	let hero: HTMLDivElement
 	let loveSpace: HTMLDivElement
@@ -69,7 +69,8 @@
 			<h3 class="pb-4 text-7xl font-light">Systems Developer</h3>
 		</div>
 		<div class="mt-145"></div>
-		<ProjectsList bind:section={projects} />
+		<Projects />
+		<div class="mt-300"></div>
 		<div bind:this={loveSpace} class="mt-145 flex flex-col justify-center items-center pr-0 h-svh w-full md:items-end md:pr-[10svw]">
 			<h2 class="text-6xl">I love space</h2>
 			<Button>Explore cloud of devotions</Button>
