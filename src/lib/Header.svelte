@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { gsap } from "gsap";
 
-	import GlassFilter from "$lib/glass/GlassFilter.svelte";
-	import GlassButton from "$lib/glass/GlassButton.svelte"
+	import GlassFilter from "$components/glass/GlassFilter.svelte";
+	import GlassButton from "$components/glass/GlassButton.svelte"
 	import Github from "$assets/github.svelte";
 	import Linkedin from "$assets/linkedin.svelte";
 	import { scroll } from "$lib/shared.svelte";
