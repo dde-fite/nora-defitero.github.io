@@ -47,6 +47,9 @@
 			duration: 2.5,
 			ease: "power2.inOut"
 		})
+		return (() => {
+			tl.kill()
+		})
 	})
 
 	const handleClick = () => {
