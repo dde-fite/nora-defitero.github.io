@@ -18,38 +18,36 @@
 	onMount(() => {
 		gsap.registerPlugin(ScrollTrigger);
 
-		const tl = gsap.timeline({
-			scrollTrigger: {
-				trigger: tm_trigger,
-				start: "top top",
-				end: "+=100%",
-				scrub: 1
-			}
-		})
-
-
-		tl.to(arrowElement, {
-			keyframes: [
-				{
-					y: "0svh",
-					duration: 2,
-					ease: "power2.out"
-				},
-				{
-					y: "-20svh",
-					duration: 4,
-					ease: "power2.inOut"
+		const ctx = gsap.context(() => {
+			gsap.timeline({
+				scrollTrigger: {
+					trigger: tm_trigger,
+					start: "top top",
+					end: "+=100%",
+					scrub: 1
 				}
-			]
+			})
+			.to(arrowElement, {
+				keyframes: [
+					{
+						y: "0svh",
+						duration: 2,
+						ease: "power2.out"
+					},
+					{
+						y: "-20svh",
+						duration: 4,
+						ease: "power2.inOut"
+					}
+				]
+			})
+			.to(arrowElement, {
+				rotation: 180,
+				duration: 2.5,
+				ease: "power2.inOut"
+			})
 		})
-		.to(arrowElement, {
-			rotation: 180,
-			duration: 2.5,
-			ease: "power2.inOut"
-		})
-		return (() => {
-			tl.kill()
-		})
+		return () => ctx.revert()
 	})
 
 	const handleClick = () => {
