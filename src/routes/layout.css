@@ -6,11 +6,12 @@
 @theme {
 	--color-primary: #E2E3F3;
 	--color-black: #1F1F22;
+	--color-black-secondary: #4E4E4E;
 	--font-display: "Matangi", sans-serif;
 	--font-text: "Raleway", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {color: #E2E3F3; font-family: 'Matangi', sans-serif;}
+h1, h2, h3, h4, h5, h6 {font-family: 'Matangi', sans-serif;}
 
 h1 {
 	font-weight: 400;
@@ -21,7 +22,6 @@ h2, h3 {
 }
 
 p {
-	color: #FFFFFF;
 	font-family: 'Raleway', sans-serif;
 }
 

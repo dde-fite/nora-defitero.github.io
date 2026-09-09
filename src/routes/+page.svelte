@@ -56,17 +56,17 @@
 <div id="smooth-wrapper">
 	<div id="smooth-content">
 		<div bind:this={hero} class="flex flex-col justify-center items-center pl-0 h-svh w-full md:items-start md:pl-[10svw]">
-			<h1 class="pl-5 text-[clamp(6rem,20svw,12rem)] leading-[clamp(6rem,20svw,12rem)]">
+			<h1 class="pl-5 text-[clamp(6rem,20svw,12rem)] leading-[clamp(6rem,20svw,12rem)] text-primary">
 				<span class="block">Nora</span>
 				<span class="block pl-8">de Fitero</span>
 			</h1>
-			<h3 class="pb-4 text-7xl font-light">Systems Developer</h3>
+			<h3 class="pb-4 text-7xl font-light text-primary">Systems Developer</h3>
 		</div>
 		<div class="mt-145"></div>
 		<Projects />
 		<div class="mt-300"></div>
 		<div bind:this={loveSpace} class="mt-145 flex flex-col justify-center items-center pr-0 h-svh w-full md:items-end md:pr-[10svw]">
-			<h2 class="text-6xl">I love space</h2>
+			<h2 class="text-6xl text-primary">I love space</h2>
 			<Button>Explore cloud of devotions</Button>
 		</div>
 	</div>
