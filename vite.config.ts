@@ -17,7 +17,8 @@ export default defineConfig({
 			adapter: adapter(),
 			alias: {
 				'$components': resolve('./src/lib/components'),
-				'$assets': resolve('./src/lib/assets')
+				'$assets': resolve('./src/lib/assets'),
+				'$objects': resolve('./src/lib/objects')
 			}
 		}),
 
