@@ -7,11 +7,11 @@
 	} from 'three'
 	import { SheetObject } from '@threlte/theatre'
 
-    import Station from '$lib/Station.svelte'
-	import Earth from '$lib/Earth.svelte'
-    import Nebula from '$lib/Nebula.svelte'
-    import Exoplanet from '$lib/Exoplanet.svelte'
-    import Chipset from '$lib/Chipset.svelte'
+    import Station from '$objects/Station.svelte'
+	import Earth from '$objects/Earth.svelte'
+    import Nebula from '$objects/Nebula.svelte'
+    import Exoplanet from '$objects/Exoplanet.svelte'
+    import Chipset from '$objects/Chipset.svelte'
 
 	const { scene, renderer } = useThrelte()
 
