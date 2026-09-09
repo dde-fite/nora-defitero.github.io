@@ -35,11 +35,11 @@
 </script>
 
 <div class="fixed top-0 right-0 left-0 h-screen w-screen -z-100">
-	{#if import.meta.env.MODE === 'development'}
+	<!-- {#if import.meta.env.MODE === 'development'}
 		{#await import('@threlte/theatre') then { Studio }}
 		<Studio />
 		{/await}
-	{/if}
+	{/if} -->
 	<Canvas>
 		<!-- <ThrelteStudio> -->
 			<Project config={{ state: stateJson }}>
