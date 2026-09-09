@@ -5,7 +5,7 @@
 	import { ScrollSmoother } from "gsap/ScrollSmoother"
 	import { Canvas } from '@threlte/core'
 	// import { Studio as ThrelteStudio } from '@threlte/studio'
-	import { Project, Sequence, Sheet, type SequenceController } from '@threlte/theatre'
+	import { Project, Sequence, Sheet } from '@threlte/theatre'
 
 	import { scroll } from '$lib/shared.svelte'
     import Header from '$lib/Header.svelte'
@@ -15,13 +15,11 @@
 	import stateJson from '$lib/sequence.json'
     import Projects from '$lib/Projects.svelte'
 
-	let hero: HTMLDivElement
-	let loveSpace: HTMLDivElement
-	let projects: HTMLDivElement
+	let hero = $state<HTMLDivElement>()
+	let loveSpace = $state<HTMLDivElement>()
+	let projects = $state<HTMLDivElement>()
 
-	let sequence = $state<SequenceController>()
 	let position = $state(0)
-	let playing = $state(false)
 
 	onMount(() => {
 		gsap.registerPlugin(ScrollTrigger,ScrollSmoother)
@@ -47,11 +45,7 @@
 			<Project config={{ state: stateJson }}>
 				<Sheet>
 					<Scene />
-					<Sequence
-					    bind:sequence
-						bind:playing
-						bind:position
-					/>
+					<Sequence bind:position />
 				</Sheet>
 			</Project>
 		<!-- </ThrelteStudio> -->
