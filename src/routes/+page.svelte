@@ -9,8 +9,8 @@
 
 	import { scroll } from '$lib/shared.svelte'
     import Header from '$lib/Header.svelte'
-    import PinnedArrow from '$lib/PinnedArrow.svelte'
-    import Button from '$lib/Button.svelte'
+    import PinnedArrow from '$components/PinnedArrow.svelte'
+    import Button from '$components/Button.svelte'
 	import Scene from '$lib/Scene.svelte'
 	import stateJson from '$lib/sequence.json'
     import ProjectsList from '$lib/ProjectsList.svelte'
